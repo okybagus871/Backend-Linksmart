@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fit_propers",
+  "info": {
+    "singularName": "fit-proper",
+    "pluralName": "fit-propers",
+    "displayName": "FitProper",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tanggalFitProper": {
+      "type": "date"
+    },
+    "proyeksi": {
+      "type": "string",
+      "maxLength": 150,
+      "required": false
+    },
+    "jenis": {
+      "type": "string",
+      "maxLength": 20,
+      "required": false
+    },
+    "nilai_kc": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::key-competency.key-competency"
+    },
+    "nilai_pe": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::personal-endurance.personal-endurance"
+    },
+    "nilai_pj": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proyeksi-jabatan.proyeksi-jabatan"
+    },
+    "idPeserta": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pegawai.pegawai",
+      "inversedBy": "peserta"
+    },
+    "idPenguji": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pegawai.pegawai",
+      "mappedBy": "penguji"
+    }
+  }
+}

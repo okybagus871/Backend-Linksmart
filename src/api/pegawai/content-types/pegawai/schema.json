@@ -1,0 +1,126 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pegawais",
+  "info": {
+    "singularName": "pegawai",
+    "pluralName": "pegawais",
+    "displayName": "Pegawai",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namaPegawai": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "NIP": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 18,
+      "minLength": 18
+    },
+    "tempatLahir": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "tanggalLahir": {
+      "type": "date",
+      "required": true
+    },
+    "agama": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "maxLength": 20
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "maxLength": 100
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Pria",
+        "Wanita"
+      ],
+      "required": true
+    },
+    "noHP": {
+      "type": "string",
+      "maxLength": 13,
+      "required": true,
+      "unique": true
+    },
+    "pendidikan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pendidikan.pendidikan",
+      "inversedBy": "pegawais"
+    },
+    "alamat": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "jabatan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::jabatan.jabatan",
+      "inversedBy": "pegawais"
+    },
+    "unit": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::unit.unit",
+      "inversedBy": "pegawais"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "Peserta",
+        "Penguji",
+        "Bukan peserta/penguji"
+      ]
+    },
+    "grade": {
+      "type": "string",
+      "maxLength": 10,
+      "required": true
+    },
+    "jenjang": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "peserta": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fit-proper.fit-proper",
+      "mappedBy": "idPeserta"
+    },
+    "penguji": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::fit-proper.fit-proper",
+      "inversedBy": "idPenguji"
+    },
+    "pewawancara": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::wawancara.wawancara",
+      "inversedBy": "pegawais"
+    },
+    "peserta_wawancara": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wawancara.wawancara",
+      "mappedBy": "pegawai"
+    }
+  }
+}

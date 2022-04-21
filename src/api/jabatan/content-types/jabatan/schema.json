@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jabatans",
+  "info": {
+    "singularName": "jabatan",
+    "pluralName": "jabatans",
+    "displayName": "Jabatan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namaJabatan": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "pegawais": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pegawai.pegawai",
+      "mappedBy": "jabatan"
+    },
+    "units": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::unit.unit",
+      "mappedBy": "jabatans"
+    }
+  }
+}
